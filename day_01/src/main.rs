@@ -24,7 +24,8 @@ fn max_three_calories(input: &str) -> u32 {
 }
 
 fn calories_per_elf(input: &str) -> Vec<u32> {
-    input.split("\r\n\r\n")
+    input.replace("\r", "")
+        .split("\n\n")
         .map(|elf_foods| {
             elf_foods.lines()
                 .map(|food| parse_calories(food))
