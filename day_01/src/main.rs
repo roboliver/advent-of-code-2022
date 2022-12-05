@@ -21,7 +21,6 @@ fn max_three_calories(input: &str) -> u32 {
     calories[..3]
         .iter()
         .sum()
-
 }
 
 fn calories_per_elf(input: &str) -> Vec<u32> {
