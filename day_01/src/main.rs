@@ -35,7 +35,7 @@ fn calories_per_elf(input: &str) -> Vec<u32> {
 }
 
 fn parse_calories(food: &str) -> u32 {
-    food.trim().parse().expect("Not a number ")
+    food.trim().parse().expect("Not a number")
 }
 
 fn read_input() -> String {
