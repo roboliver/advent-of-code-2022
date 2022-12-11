@@ -2,8 +2,8 @@ use std::fs;
 
 fn main() {
     let input = read_input();
-    println!("Part 1: {}", containment_counts(&input));
-    println!("Part 2: {}", overlap_counts(&input));
+    println!("Part 1: {}", counts(&input, &has_containment));
+    println!("Part 2: {}", counts(&input, &has_overlap));
 }
 
 struct SectionAssignment {
@@ -11,23 +11,13 @@ struct SectionAssignment {
     end: u32
 }
 
-fn containment_counts(input: &str) -> u32 {
+fn counts(input: &str, pred: &dyn Fn(SectionAssignment, SectionAssignment) -> bool) -> u32 {
     input.lines()
         .map(section_assignments)
         .map(|section_assignments| {
-            has_containment(section_assignments.0, section_assignments.1)
+            pred(section_assignments.0, section_assignments.1)
         })
-        .filter(|&containment| containment)
-        .count() as u32
-}
-
-fn overlap_counts(input: &str) -> u32 {
-    input.lines()
-        .map(section_assignments)
-        .map(|section_assignments| {
-            has_overlap(section_assignments.0, section_assignments.1)
-        })
-        .filter(|&overlap| overlap)
+        .filter(|&hit| hit)
         .count() as u32
 }
 
